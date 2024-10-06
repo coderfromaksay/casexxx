@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>X_edu</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron&family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #000;
+      }
+      header {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        background-color: #15153b;
+        color: white;
+        text-align: center;
+        padding: 50px;
+        font-family: Arial, sans-serif;
+      }
+      nav ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+      }
+      nav ul li {
+        display: inline;
+        margin-left: 20px;
+      }
+      nav ul li a {
+        color: #4da6ff;
+        text-decoration: none;
+        font-family: "Orbitron", sans-serif;
+        transition: color 0.3s;
+      }
+      nav ul li a:hover {
+        color: #ff9900;
+      }
+      h1,
+      h2 {
+        font-family: "Orbitron", sans-serif;
+        color: #4da6ff;
+      }
+      iframe {
+        width: 100vw;
+        height: 100vh;
+        border: none;
+      }
+      button {
+        position: absolute;
+        top: 50px;
+        left: 10px;
+        z-index: 10;
+        padding: 10px;
+        background-color: rgba(0, 0, 0, 0.7);
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+      }
+      button:hover {
+        background-color: rgba(0, 0, 0, 0.9);
+      }
+      .logo {
+        display: flex;
+        align-items: center;
+      }
+      .logo img {
+        width: 200px;
+        height: auto;
+        margin-right: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav class="container">
+        <ul>
+          <h1 style="color: #4da6ff">Xedu Space View</h1>
+          <li><a href="/homepage/homepage.html">Main</a></li>
+          <li><a href="/Planets/planets.html">Planets</a></li>
+          <li><a href="https://www.nasa.gov/">NASA</a></li>
+          <li><a href="/NasaTest/nasatest.html">Test</a></li>
+        </ul>
+      </nav>
+    </header>
+    <button onclick="goToExoplanet()">Find exoplanet</button>
+    <iframe
+      id="wwtFrame"
+      src="https://worldwidetelescope.org/webclient/"
+      allowfullscreen
+    ></iframe>
+    <script>
+      function goToExoplanet() {
+        const wwtFrame = document.getElementById("wwtFrame");
+        wwtFrame.src =
+          "https://worldwidetelescope.org/webclient/?place=Kepler-452b";
+      }
+    </script>
+  </body>
+</html>

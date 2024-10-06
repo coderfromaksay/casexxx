@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NASA COSMO TRAVEL</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron&family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        font-family: "Roboto", sans-serif;
+        background-color: #000;
+        color: #fff;
+        background-image: url("/api/placeholder/1920/1080");
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+      }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      header {
+        background-color: rgba(26, 26, 74, 0.8);
+        padding: 10px 0;
+      }
+      nav ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        text-align: right;
+      }
+      nav ul li {
+        display: inline;
+        margin-left: 20px;
+      }
+      nav ul li a {
+        color: #4da6ff;
+        text-decoration: none;
+        font-family: "Orbitron", sans-serif;
+        transition: color 0.3s;
+      }
+      nav ul li a:hover {
+        color: #ff9900;
+      }
+      .topic {
+        margin: 40px 0;
+        background-color: rgba(0, 0, 0, 0.7);
+        padding: 20px;
+        border-radius: 10px;
+      }
+      .topic h1 {
+        font-size: 2.5em;
+        margin-bottom: 10px;
+        font-family: "Orbitron", sans-serif;
+        color: #4da6ff;
+      }
+      .extra-info {
+        font-size: 1.1em;
+        line-height: 1.6;
+      }
+      .image-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        margin-top: 40px;
+      }
+      .image-item {
+        background-color: rgba(26, 26, 74, 0.8);
+        border-radius: 10px;
+        overflow: hidden;
+        transition: transform 0.3s ease;
+        cursor: pointer;
+      }
+      .image-item:hover {
+        transform: scale(1.05);
+      }
+      .image-item img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+      }
+      .image-info {
+        padding: 15px;
+        background-color: rgba(42, 42, 106, 0.8);
+      }
+      .image-info h3 {
+        margin: 0 0 10px 0;
+        font-family: "Orbitron", sans-serif;
+        color: #ff9900;
+      }
+      .image-info p {
+        margin: 0;
+        font-size: 0.9em;
+      }
+      footer {
+        background-color: rgba(26, 26, 74, 0.8);
+        text-align: center;
+        padding: 20px 0;
+        margin-top: 40px;
+      }
+      #loading {
+        text-align: center;
+        font-size: 1.2em;
+        margin-top: 20px;
+      }
+      button {
+        background-color: #4da6ff;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+        margin-right: 10px;
+        margin-bottom: 10px;
+        font-family: "Orbitron", sans-serif;
+      }
+      button:hover {
+        background-color: #3385ff;
+      }
+      @keyframes twinkle {
+        0% {
+          opacity: 0.5;
+        }
+        50% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0.5;
+        }
+      }
+      .star {
+        position: fixed;
+        width: 2px;
+        height: 2px;
+        background: white;
+        border-radius: 50%;
+        animation: twinkle 3s infinite;
+      }
+      .logo {
+        display: flex;
+        align-items: center;
+      }
+      .logo img {
+        width: 200px;
+        height: auto;
+        margin-right: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <img
+          src="./Space_Apps_Default_Logo_-_2-Col.width-440.jpegquality-60.png"
+          alt="NASA Logo"
+        />
+      </div>
+      <nav>
+        <ul>
+          <li class="linknav">
+            <a href="./homepage.html">Main</a>
+          </li>
+          <li class="linknav">
+            <a href="/Planets/planets.html">Planets</a>
+          </li>
+          <li class="linknav">
+            <a href="https://www.nasa.gov/">NASA</a>
+          </li>
+          <li class="linknav">
+            <a href="/Space_view/space_view.html">Space view</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main class="container">
+      <section class="topic">
+        <h1>NASA SPACE TRAVEL</h1>
+        <p class="extra-info">
+          Discover the amazing world of stars, planets, and galaxies with NASA's
+          educational resources. Our site takes you on an exciting journey
+          through the vast expanses of the Universe, introducing you to the
+          latest discoveries and technologies in space exploration.
+        </p>
+      </section>
+      <div id="loading">Loading NASA data...</div>
+      <section id="nasa-content" class="image-grid"></section>
+    </main>
+    <footer>
+      <p>&copy; 2024 NASA Space Travel. All rights reserved.</p>
+    </footer>
+
+    <script>
+      const NASA_API_KEY = "h1NorJCbpeBye1rdc3akvblkfvzk8e3YN6bCxUMD";
+
+      function createStars() {
+        for (let i = 0; i < 100; i++) {
+          let star = document.createElement("div");
+          star.className = "star";
+          star.style.top = Math.random() * 100 + "%";
+          star.style.left = Math.random() * 100 + "%";
+          star.style.animationDelay = Math.random() * 3 + "s";
+          document.body.appendChild(star);
+        }
+      }
+
+      async function fetchNASAData() {
+        const loading = document.getElementById("loading");
+        loading.style.display = "block";
+        const nasaContent = document.getElementById("nasa-content");
+        nasaContent.innerHTML = "";
+
+        const fetchDates = [];
+        const today = new Date();
+        for (let i = 0; i < 4; i++) {
+          let date;
+          do {
+            date = new Date(today);
+            date.setDate(date.getDate() - Math.floor(Math.random() * 365));
+            dateStr = date.toISOString().split("T")[0];
+          } while (fetchDates.includes(dateStr));
+          fetchDates.push(dateStr);
+        }
+
+        for (const dateStr of fetchDates) {
+          try {
+            const response = await fetch(
+              `https://api.nasa.gov/planetary/apod?api_key=${NASA_API_KEY}&date=${dateStr}`
+            );
+            const data = await response.json();
+
+            const contentDiv = document.createElement("div");
+            contentDiv.className = "image-item";
+            contentDiv.innerHTML = `
+                        <img src="${data.url}" alt="${data.title}">
+                        <div class="image-info">
+                            <h3>${data.title}</h3>
+                            <p>${data.explanation.substring(0, 150)}...</p>
+                        </div>
+                    `;
+            nasaContent.appendChild(contentDiv);
+          } catch (error) {
+            console.error("Error fetching APOD:", error);
+          }
+        }
+        loading.style.display = "none";
+      }
+
+      createStars();
+      window.onload = fetchNASAData;
+    </script>
+  </body>
+</html>
